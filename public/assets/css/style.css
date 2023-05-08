@@ -1,0 +1,79 @@
+
+body {
+    padding: 0;
+    margin: 0;
+    font-family: Roboto, "san-serif";
+}
+
+
+
+#main-section {
+    width: 100%;
+    height: 100vh;
+    padding: 5%;
+    background: whitesmoke;
+    position: fixed;
+    overflow: scroll;
+}
+
+h1 {
+    font-size: 1.7rem;
+    font-weight: 900;
+    font-family: Montserrat, "san-serif";
+    margin: 15% 0;
+    text-align: center;
+}
+
+.fa-user-circle {
+    display: block;
+    margin: 15px 0;
+    color: #0072B5;
+}
+
+
+#main-section form {
+    width: 250px;
+    margin: 10vh auto;
+}
+
+#main-section .form-control:focus {
+    box-shadow: none!important;
+}
+
+
+#main-section button {
+    width: 100%;
+    padding: 4%;
+    background: #0072B5;
+    border: #0072B5;
+}
+
+/* styling for success page */
+
+#main-section-success {
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#main-section-success h1 {
+    margin: 10px;
+}
+
+#main-section-success a {
+    text-decoration: none;
+    color: rgb(32, 32, 32);
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    font-size: 1.7rem;
+    cursor: pointer;
+}
+
+#main-section-success a:hover {
+    color: #4b4a4a;
+}
