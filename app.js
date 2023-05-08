@@ -12,7 +12,7 @@ app.set("view engine", "ejs");
 const client = require("@mailchimp/mailchimp_marketing");
 
 client.setConfig({
-  apiKey: "330f4b1e003888fc2239557a98878c16",
+  apiKey: "<apiKey>",
   server: "us17",
 });
 
