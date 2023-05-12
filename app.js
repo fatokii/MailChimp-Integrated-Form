@@ -1,9 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
+// app.use(express.static(path.join(__dirname, '/public')));
 app.set("view engine", "ejs");
 
 
@@ -12,7 +14,7 @@ app.set("view engine", "ejs");
 const client = require("@mailchimp/mailchimp_marketing");
 
 client.setConfig({
-  apiKey: "<apiKey>",
+  apiKey: "330f4b1e003888fc2239557a98878c16",
   server: "us17",
 });
 
@@ -20,7 +22,7 @@ client.setConfig({
 
 
 app.get("/", function(req, res){
-    res.render("index")
+    res.render("index");
 })
 
 
@@ -38,11 +40,12 @@ app.post("/", function(req, res){
                 async function updateMember(){
                     const response = await client.lists.updateListMember("46437b88eb", email, {
                         status: "subscribed"
+                    }).then(function(info){
+                        res.render("success", {data: "You have successfully signed up for our Newsletter"})
                     })
-
-                    console.log("successfully update member");
-
-                    res.render("success", {data: "You have successfully signed up for our Newsletter"});
+                    .catch(function(err){
+                        console.log(err);
+                    })
                 }
 
                 updateMember();
@@ -51,6 +54,7 @@ app.post("/", function(req, res){
             
         })
         .catch(function(err){
+            console.log(err);
             async function addMember() {
                 const response = await client.lists.addListMember("46437b88eb", {
                     email_address: email,
@@ -59,11 +63,15 @@ app.post("/", function(req, res){
                         FNAME: fname,
                         LNAME: lname
                     }
-                });
+                })
+                .then(function(info){
+                    res.render("success", {data: "You have successfully signed up for our Newsletter"});
+                })
+                .catch(function(err){
+                    console.log(err);
+                })
     
-                console.log("sucessfully added " + fname);
-    
-                res.render("success", {data: "You have successfully signed up for our Newsletter"});
+                
             }
 
             addMember();
@@ -78,6 +86,7 @@ app.post("/", function(req, res){
 
     checkIfSubscribed();
 })
+
 
 app.listen("3000", function(){
     console.log("App is up and running.")
