@@ -1,1 +1,1 @@
-This is a MailChimp integrated form that adds members to a newsletter.
+This website contains a mailChimp integrated form that adds users to a Newsletter
